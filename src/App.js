@@ -1,15 +1,18 @@
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
 import './App.css';
+
+import MainPage from './Pages/Main/Main.js';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        
-      </header>
-      <div className="App-body">
-
-      </div>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <MainPage />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
