@@ -12,7 +12,7 @@ function Main() {
       <div className="container">
 
         <div className="container" style={{ marginBottom: 35 }}>
-          <button type="button" className="btn btn-primary">New Game</button>
+          <a className="btn btn-primary" href="/NewGame" >New Game</a>
         </div>
 
         <div className="container">

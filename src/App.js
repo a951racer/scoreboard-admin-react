@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import MainPage from './Pages/Main/Main';
 import AuthPage from './Pages/Auth/Auth';
+import NewGamePage from './Pages/NewGame/NewGame';
 
 function App() {
 
@@ -21,13 +22,16 @@ function App() {
 
   return (
     <BrowserRouter>
-      {!userData || !userData.token ? <Redirect to="/Login" /> : <Redirect from="/Login" to="/" />}
       <Switch>
+      {!userData || !userData.token ? <Redirect to="/Login" /> : <Redirect exact from="/Login" to="/" />}
         <Route path="/Login">
           <AuthPage setUserData={setNewUserData} />
         </Route>
         <Route exact path="/">
           <MainPage />
+        </Route>
+        <Route path="/NewGame">
+          <NewGamePage />
         </Route>
       </Switch>
     </BrowserRouter>
