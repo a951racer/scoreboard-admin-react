@@ -1,4 +1,6 @@
 import '../../css/bootstrap-4.4.1.css';
+import ActiveGameList from '../../Components/Main/ActiveGameList';
+import CompletedGameList from '../../Components/Main/CompletedGameList';
 
 function Main() {
   return (
@@ -17,58 +19,12 @@ function Main() {
 
         <div className="container">
           <h3>Active Games</h3>
-          <table width="400" border="1">
-            <tbody>
-              <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Game</th>
-                <th scope="col">Players</th>
-              </tr>
-              <tr>
-                <td><a href="/">8/1/2021 1:30pm</a></td>
-                <td>Oh Hell</td>
-                <td>6</td>
-              </tr>
-              <tr>
-                <td><a href="/">8/7/2021 2:10pm</a></td>
-                <td>Hearts</td>
-                <td>5</td>
-              </tr>
-            </tbody>
-          </table>
+          <ActiveGameList />
         </div>
         <br />
         <div className="container">
-          <h3>Recent Games</h3>
-          <table width="400" border="1">
-            <tbody>
-              <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Game</th>
-                <th scope="col">Players</th>
-              </tr>
-              <tr>
-                <td><a href="/">7/27/2021 12: 30pm</a></td>
-                <td>5 Crowns</td>
-                <td>5</td>
-              </tr>
-              <tr>
-                <td><a href="/">7/21/2021 3: 15m</a></td>
-                <td>Hearts</td>
-                <td>6</td>
-              </tr>
-              <tr>
-                <td><a href="/">7/10/2021 1: 25pm</a></td>
-                <td>Phase 10</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <td><a href="/">7/4/2021 2: 30pm</a></td>
-                <td>5 Crowns</td>
-                <td>7</td>
-              </tr>
-            </tbody>
-          </table>
+          <h3>Completed Games</h3>
+          <CompletedGameList />
         </div>
 
 

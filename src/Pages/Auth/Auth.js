@@ -3,23 +3,23 @@ import '../../css/bootstrap-4.4.1.css';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-async function loginUser(email, password) {
-    let userData;
-    try {
-        userData = await user.login(email, password);
-        return userData;
-    } catch (error) {
-        if (error.response && error.response.status === 401) {
-            //incorrect username/password
-        }
-        return null;
-    }
-}
-
 function Auth({ setUserData }) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const loginUser = async (email, password) => {
+        let userData;
+        try {
+            userData = await user.login(email, password);
+            return userData;
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                //incorrect username/password
+            }
+            return null;
+        }
+    }
 
     const handleSubmit = async e => {
         e.preventDefault();
