@@ -17,7 +17,7 @@ function ActiveGameList() {
     useEffect(() => {
         findGames();
         return () => {
-            setGames();
+            setGames(null);
         };
     }, []);
 

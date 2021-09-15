@@ -10,8 +10,18 @@ async function login(email, password) {
     return user.data;
 }
 
+async function register(email, username, password) {
+    const user = await axios.post(apiRoot + '/auth/register', {
+        email,
+        username,
+        password
+    });
+    return user.data;
+}
+
 let exp = {
-    login
+    login,
+    register
 };
 
 export default exp;
