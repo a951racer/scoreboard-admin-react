@@ -2,8 +2,9 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { useState } from 'react';
 
 import MainPage from './Pages/Main/Main';
-import AuthPage from './Pages/Auth/Auth';
+import LoginPage from './Pages/Login/Login';
 import NewGamePage from './Pages/NewGame/NewGame';
+import CreateAccountPage from './Pages/CreateAccount/CreateAccount';
 
 function App() {
 
@@ -20,18 +21,25 @@ function App() {
     setUserData(newUserData);
   }
 
+  const loggedIn = userData && userData.token;
+
   return (
     <BrowserRouter>
-    {!userData || !userData.token ? <Redirect to="/Login" /> : <Redirect from="/Login" to="/" />}
       <Switch>
         <Route path="/Login">
-          <AuthPage setUserData={setNewUserData} />
+          {loggedIn ? <Redirect to="/" /> : <LoginPage setUserData={setNewUserData} />}
+        </Route>
+        <Route path="/CreateAccount">
+          {loggedIn ? <Redirect to="/" /> : (userData ? <Redirect to="/Login" /> : <CreateAccountPage setUserData={setNewUserData} />)}
         </Route>
         <Route exact path="/">
-          <MainPage />
+          {loggedIn ? <MainPage /> : <Redirect to="/Login" />}
         </Route>
         <Route path="/NewGame">
-          <NewGamePage />
+          {loggedIn ? <NewGamePage /> : <Redirect to="/Login" />}
+        </Route>
+        <Route path="/">
+          {loggedIn ? <Redirect to="/" /> : <Redirect to="/Login" />}
         </Route>
       </Switch>
     </BrowserRouter>
