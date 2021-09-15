@@ -2,6 +2,9 @@ import user from '../../API/user.js';
 import '../../css/bootstrap-4.4.1.css';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import React from 'react';
+import { Snackbar, IconButton } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 
 function Auth({ setUserData }) {
 
@@ -14,9 +17,7 @@ function Auth({ setUserData }) {
             userData = await user.login(email, password);
             return userData;
         } catch (error) {
-            if (error.response && error.response.status === 401) {
-                //incorrect username/password
-            }
+            setShowError(true);
             return null;
         }
     }
@@ -28,6 +29,16 @@ function Auth({ setUserData }) {
             setUserData(loginData);
         }
     }
+
+    const [showError, setShowError] = useState(false);
+
+    const hideError = (e, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setShowError(false);
+    };
 
     return (
         <div style={{ paddingBottom: 70 }}>
@@ -43,6 +54,25 @@ function Auth({ setUserData }) {
                     <div>
                         <label>Password: </label><input type="password" onChange={(e) => setPassword(e.target.value)} />
                     </div>
+
+                    <Snackbar
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        open={showError}
+                        autoHideDuration={6000}
+                        onClose={hideError}
+                        message="Login Failed"
+                        action={
+                            <React.Fragment>
+                                <IconButton size="small" aria-label="close" color="inherit" onClick={hideError}>
+                                    <CloseIcon fontSize="small" />
+                                </IconButton>
+                            </React.Fragment>
+                        }
+                    />
+
                     <button type="submit" className="btn btn-primary">Login</button>
                 </form>
             </div>
