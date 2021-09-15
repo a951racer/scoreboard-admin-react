@@ -14,7 +14,12 @@ function CompletedGameList() {
         }));
     }
 
-    useEffect(() => findGames(), []);
+    useEffect(() => {
+        findGames();
+        return () => {
+            setGames();
+        };
+    }, []);
 
     return (
         <table width="400" border="1">

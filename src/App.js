@@ -22,8 +22,8 @@ function App() {
 
   return (
     <BrowserRouter>
+    {!userData || !userData.token ? <Redirect to="/Login" /> : <Redirect from="/Login" to="/" />}
       <Switch>
-      {!userData || !userData.token ? <Redirect to="/Login" /> : <Redirect exact from="/Login" to="/" />}
         <Route path="/Login">
           <AuthPage setUserData={setNewUserData} />
         </Route>
