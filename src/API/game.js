@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiRoot = "http://localhost:4800";
+const apiRoot = process.env.REACT_APP_API;
 
 async function getGames() {
     const games = await axios.get(apiRoot + '/game');
